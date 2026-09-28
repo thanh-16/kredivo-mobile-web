@@ -1,0 +1,864 @@
+/* ==========================================================================
+   KREDIVO MOBILE WEB - IPHONE 12 PRO MAX VIEWPORT (428px x 926px)
+   100% Clean Web App - Khớp toàn bộ ảnh bổ sung & tương tác Modal Hình 2
+   ========================================================================== */
+
+:root {
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --bg-app: #0c0c0c;
+  --bg-card: #181b24;
+  --bg-card-border: #262c3c;
+  --color-blue-active: #38bdf8;
+  --color-blue-bg: #142944;
+  --color-orange: #ff7a29;
+  --color-orange-dark: #ea580c;
+  --color-amber: #f59e0b;
+  --text-white: #ffffff;
+  --text-gray: #9ca3af;
+  --text-dim: #64748b;
+  --app-max-width: 428px; /* Tỉ lệ chiều rộng chuẩn iPhone 12 Pro Max */
+  --bottom-nav-height: 60px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-main);
+  background-color: #040507;
+  color: var(--text-white);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   APP CONTAINER (Tỉ lệ chuẩn Mobile iPhone 12 Pro Max)
+   ========================================================================== */
+.kredivo-app {
+  position: relative;
+  width: 100%;
+  max-width: var(--app-max-width);
+  height: 96vh;
+  height: 96dvh;
+  max-height: 926px;
+  aspect-ratio: 428 / 926; /* Khóa cứng tỉ lệ chuẩn iPhone 12 Pro Max (428x926) */
+  background-color: var(--bg-app);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 
+    0 0 0 1px #1e2433,
+    0 20px 60px rgba(0, 0, 0, 0.85);
+}
+
+/* ==========================================================================
+   APP SCREENS (Bắt đầu từ đỉnh trang web - top: 0)
+   ========================================================================== */
+.app-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  flex-direction: column;
+  background-color: var(--bg-app);
+  overflow: hidden;
+  z-index: 10;
+}
+
+.app-screen.active {
+  display: flex;
+}
+
+.scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 24px;
+}
+
+.scroll-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   SCREEN 1: TRANG CHỦ (Hình 1 & Ảnh bổ sung)
+   ========================================================================== */
+
+/* 1. Banner Promo */
+.banner-section {
+  width: 100%;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 2. Thẻ Hạn Mức Tối Đa (Click để mở Hình số 2) */
+.limit-card-section {
+  padding: 0 14px;
+  margin-top: -6px;
+  position: relative;
+  z-index: 15;
+}
+
+.limit-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #191c24;
+  border: 1px solid #282f40;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.limit-card:hover {
+  background-color: #202430;
+  border-color: #384257;
+}
+
+.limit-card:active {
+  transform: scale(0.98);
+  background-color: #242938;
+}
+
+.limit-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kredivo-logo-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 17px;
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+}
+
+.limit-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.limit-card-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.limit-card-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+.chevron-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #252a37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+}
+
+/* 3. Category Tabs */
+.category-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 14px 18px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-tab {
+  flex-shrink: 0;
+  padding: 7px 16px;
+  background: transparent;
+  color: #9ca3af;
+  border: none;
+  border-radius: 20px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cat-tab.active {
+  background: #142944;
+  color: #38bdf8;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px #1d4ed8;
+}
+
+.cat-tab:active {
+  transform: scale(0.96);
+}
+
+/* 4. 2x4 Services Grid */
+.services-section {
+  padding: 6px 10px 24px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 6px;
+}
+
+.service-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.service-cell:active {
+  transform: scale(0.94);
+}
+
+.service-icon-box {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.service-icon-img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+}
+
+.service-icon-img.icon-go-fix {
+  border-radius: 0;
+  width: 56px;
+  height: 54px;
+}
+
+.service-text {
+  font-size: 11.5px;
+  line-height: 1.3;
+  color: #d1d5db;
+  font-weight: 500;
+  max-width: 80px;
+}
+
+.service-text.font-bold {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* 5. Section Thương Hiệu Nổi Bật (Có đầy đủ 8 thương hiệu lướt ngang) */
+.brands-section {
+  border-top: 10px solid #141722;
+  padding: 18px 14px 22px;
+}
+
+.brands-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.brands-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.brands-more-link {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #38bdf8;
+  cursor: pointer;
+}
+
+.brands-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+}
+
+.brands-row::-webkit-scrollbar {
+  display: none;
+}
+
+.brand-item {
+  flex: 0 0 100px;
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.brand-item:active {
+  transform: scale(0.96);
+}
+
+.brand-card-img {
+  width: 100px;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Nút nổi cuộn xuống: ↓ Xem thêm (Khớp 100% ảnh media_1790617174394.png)
+   Chỉ hiển thị khi giao diện bên dưới vẫn còn, bấm vào để cuộn xuống */
+.floating-see-more-btn {
+  position: absolute;
+  bottom: calc(var(--bottom-nav-height) + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(14px);
+  z-index: 38;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 18px;
+  background-color: #229ded;
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(34, 157, 237, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease;
+}
+
+.floating-see-more-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.floating-see-more-btn:active {
+  background-color: #1a83c7;
+  transform: translateX(-50%) scale(0.96);
+}
+
+/* 6. Section: Bạn mới sử dụng Kredivo? Khám phá ngay! (Grid 3 thẻ dàn đều chuẩn 100%) */
+.tutorial-guide-section {
+  border-top: 10px solid #141722;
+  padding: 22px 14px 20px;
+}
+
+.tutorial-guide-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 18px;
+}
+
+.tutorial-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.tutorial-card-item {
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.tutorial-card-item:active {
+  transform: scale(0.96);
+}
+
+.tut-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* 7. Section Footer: TPBank */
+.tpbank-footer-section {
+  padding: 16px 14px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.tpbank-text {
+  font-size: 10px;
+  color: #64748b;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.tpbank-logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-bottom-spacer {
+  height: calc(var(--bottom-nav-height) + 16px);
+}
+
+
+/* ==========================================================================
+   SCREEN 2: MODAL THÔNG TIN HẠN MỨC (HÌNH SỐ 2)
+   Trượt từ đáy lên, phủ mờ nền hiển thị đúng tỉ lệ Hình 2
+   ========================================================================== */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.46); /* Độ mờ tự nhiên chuẩn 100%, KHÔNG dùng blur */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bottom-sheet-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #191919; /* Màu nền than chì chuẩn 100% theo ảnh gốc (25, 25, 25) */
+  border-radius: 20px 20px 0 0;
+  border-top: none;
+  z-index: 110;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.75);
+  padding-bottom: 24px;
+}
+
+.bottom-sheet-panel.open {
+  transform: translateY(0);
+}
+
+.sheet-drag-area {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 4px;
+  cursor: pointer;
+}
+
+.sheet-handle {
+  width: 38px;
+  height: 4px;
+  background-color: #4b5563;
+  border-radius: 999px;
+}
+
+.sheet-inner {
+  padding: 6px 16px 14px;
+}
+
+.sheet-heading {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+/* Lưới 6 thẻ hạn mức trả góp (2 cột x 3 hàng) khớp 100% Hình 2 */
+.limit-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.limit-tile-card {
+  background: #1d2528; /* Màu nền thẻ chuẩn 100% (29, 37, 40) */
+  border-radius: 12px;
+  border: none;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tile-badge {
+  flex-shrink: 0;
+  width: 54px;
+  height: 49px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.badge-number {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.badge-unit {
+  font-size: 9.5px;
+  font-weight: 600;
+}
+
+/* Màu Badge chuẩn 100% trích xuất từ ảnh media_1790616997577.png */
+.badge-blue   { background-color: #7d9fba; }
+.badge-green  { background-color: #75cd5f; }
+.badge-orange { background-color: #fabb14; }
+.badge-purple { background-color: #cd66ad; }
+.badge-red    { background-color: #f25d58; }
+.badge-cyan   { background-color: #3eb0e6; }
+
+.tile-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.tile-sub {
+  font-size: 11.5px;
+  color: #9ca3af;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.tile-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* Disclaimers */
+.sheet-disclaimers {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 2px 2px;
+}
+
+.disclaimer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #94a3b8;
+}
+
+.ast {
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.ast.red-ast {
+  color: #ef4444;
+}
+
+.disclaimer-a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.disclaimer-a:hover {
+  text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   SCREEN 3: VAY CÁ NHÂN (HÌNH SỐ 3)
+   ========================================================================== */
+.screen-loan {
+  background-color: #0b0d13;
+}
+
+.loan-top-nav {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  background-color: #0e1118;
+  border-bottom: 1px solid #1a202d;
+  gap: 12px;
+}
+
+.loan-back-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.loan-nav-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.loan-nav-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.loan-nav-text {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.loan-body-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.loan-info-box {
+  background-color: #141f32;
+  border: 1px solid #1e3352;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 24px;
+}
+
+.loan-info-text {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.loan-info-link {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.loan-empty-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 10px 20px;
+}
+
+.loan-illus-wrapper {
+  margin-bottom: 20px;
+}
+
+.loan-illus-img {
+  width: 230px;
+  height: auto;
+  display: block;
+}
+
+.loan-empty-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+  max-width: 280px;
+  line-height: 1.35;
+}
+
+.loan-empty-desc {
+  font-size: 13.5px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.loan-bottom-bar {
+  padding: 12px 16px 20px;
+  background-color: #0e1118;
+  border-top: 1px solid #1a202d;
+}
+
+.loan-orange-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #ff7a29, #f97316);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(249, 115, 22, 0.4);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.loan-orange-btn:active {
+  transform: scale(0.98);
+}
+
+
+/* ==========================================================================
+   BOTTOM NAVIGATION BAR (Hình 1 & 2)
+   ========================================================================== */
+.app-bottom-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--bottom-nav-height);
+  background-color: rgba(14, 17, 24, 0.98);
+  border-top: 1px solid #1e2433;
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 4px;
+  z-index: 40;
+}
+
+.bottom-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  color: #64748b;
+  gap: 3px;
+  padding: 6px 0;
+  transition: color 0.15s ease;
+}
+
+.tab-icon-box {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-label {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.bottom-tab.active {
+  color: #38bdf8;
+}
+
+/* Toast Message */
+.toast-popup {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(22, 27, 39, 0.94);
+  color: #ffffff;
+  border: 1px solid #38bdf8;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 200;
+  white-space: nowrap;
+}
+
+.toast-popup.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   MOBILE SCREEN RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 480px) {
+  .kredivo-app {
+    max-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+    aspect-ratio: auto;
+    box-shadow: none;
+  }
+
+  .app-bottom-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+    height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+  }
+
+  .floating-see-more-btn {
+    bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px) + 12px);
+  }
+
+  .loan-bottom-bar {
+    padding-bottom: max(20px, calc(10px + env(safe-area-inset-bottom)));
+  }
+}

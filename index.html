@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Kredivo - Mua Trước Trả Sau & Vay Tiêu Dùng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Mobile Web App Container (Tỉ lệ chuẩn Mobile iPhone 12 Pro Max: 428px x 926px) -->
+  <div class="kredivo-app" id="kredivoApp">
+
+    <!-- ============================================== -->
+    <!-- SCREEN 1: TRANG CHỦ (Hình 1 & Ảnh bổ sung)    -->
+    <!-- ============================================== -->
+    <main class="app-screen screen-home active" id="screenHome">
+      <div class="scroll-content" id="homeScroll">
+
+        <!-- Top Promo Banner (iPhone 18 Pro từ ảnh gốc) -->
+        <section class="banner-section">
+          <img src="assets/banner_promo_18.png" alt="iPhone 18 Pro Promo Banner" class="banner-img" />
+        </section>
+
+        <!-- Thẻ: Hạn Mức Tối Đa (Click để mở Hình số 2) -->
+        <section class="limit-card-section">
+          <div class="limit-card" id="limitCardTrigger" onclick="openLimitModal()" role="button" tabindex="0">
+            <div class="limit-card-left">
+              <div class="kredivo-logo-circle">
+                <span>K</span>
+              </div>
+              <span class="limit-card-title">Hạn Mức Tối Đa</span>
+            </div>
+            <div class="limit-card-right">
+              <span class="limit-card-value">0 đ</span>
+              <div class="chevron-circle">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Category Tabs Navigation -->
+        <nav class="category-tabs" aria-label="Danh mục dịch vụ">
+          <button class="cat-tab active" onclick="selectCategory(this, 'Phổ biến')">Phổ biến</button>
+          <button class="cat-tab" onclick="selectCategory(this, 'Hóa đơn')">Hóa đơn</button>
+          <button class="cat-tab" onclick="selectCategory(this, 'Du lịch')">Du lịch</button>
+          <button class="cat-tab" onclick="selectCategory(this, 'Mua sắm')">Mua sắm</button>
+          <button class="cat-tab" onclick="selectCategory(this, 'Khác')">Khác</button>
+        </nav>
+
+        <!-- 2x4 Services Grid (Icon hình ảnh gốc 100%) -->
+        <section class="services-section">
+          <div class="services-grid">
+            
+            <!-- Service 1: Hóa Đơn Điện -->
+            <div class="service-cell" onclick="showToast('Dịch vụ Hóa Đơn Điện')">
+              <div class="service-icon-box">
+                <img src="assets/icon_dien.png" alt="Hóa Đơn Điện" class="service-icon-img" />
+              </div>
+              <span class="service-text">Hóa Đơn Điện</span>
+            </div>
+
+            <!-- Service 2: Nạp Tiền Điện Thoại -->
+            <div class="service-cell" onclick="showToast('Dịch vụ Nạp Tiền Điện Thoại')">
+              <div class="service-icon-box">
+                <img src="assets/icon_napthe.png" alt="Nạp Tiền Điện Thoại" class="service-icon-img" />
+              </div>
+              <span class="service-text">Nạp Tiền<br>Điện Thoại</span>
+            </div>
+
+            <!-- Service 3: Quản Lý Hóa Đơn -->
+            <div class="service-cell" onclick="showToast('Dịch vụ Quản Lý Hóa Đơn')">
+              <div class="service-icon-box">
+                <img src="assets/icon_quanly.png" alt="Quản Lý Hóa Đơn" class="service-icon-img" />
+              </div>
+              <span class="service-text">Quản Lý<br>Hóa Đơn</span>
+            </div>
+
+            <!-- Service 4: Vay Cá Nhân (Click mở Hình 3) -->
+            <div class="service-cell highlight-cell" onclick="switchScreen('loan')" role="button" tabindex="0">
+              <div class="service-icon-box">
+                <img src="assets/icon_vaycanhan.png" alt="Vay Cá Nhân" class="service-icon-img" />
+              </div>
+              <span class="service-text font-bold">Vay Cá Nhân</span>
+            </div>
+
+            <!-- Service 5: Shopee -->
+            <div class="service-cell" onclick="showToast('Mua sắm Shopee')">
+              <div class="service-icon-box">
+                <img src="assets/icon_shopee.png" alt="Shopee" class="service-icon-img" />
+              </div>
+              <span class="service-text">Shopee</span>
+            </div>
+
+            <!-- Service 6: Traveloka -->
+            <div class="service-cell" onclick="showToast('Du lịch Traveloka')">
+              <div class="service-icon-box">
+                <img src="assets/icon_traveloka.png" alt="Traveloka" class="service-icon-img" />
+              </div>
+              <span class="service-text">Traveloka</span>
+            </div>
+
+            <!-- Service 7: GO! (Có huy hiệu Mới) -->
+            <div class="service-cell" onclick="showToast('Mua sắm siêu thị GO!')">
+              <div class="service-icon-box">
+                <img src="assets/icon_go.png" alt="GO!" class="service-icon-img icon-go-fix" />
+              </div>
+              <span class="service-text">GO!</span>
+            </div>
+
+            <!-- Service 8: Bách Hóa Xanh -->
+            <div class="service-cell" onclick="showToast('Bách Hóa Xanh')">
+              <div class="service-icon-box">
+                <img src="assets/icon_bachhoaxanh.png" alt="Bách Hóa Xanh" class="service-icon-img" />
+              </div>
+              <span class="service-text">Bach Hoa<br>Xanh</span>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Section: Thương Hiệu Nổi Bật (Có đầy đủ các thương hiệu lướt ngang) -->
+        <section class="brands-section">
+          <div class="brands-header">
+            <h2 class="brands-title">Thương hiệu nổi bật</h2>
+            <button class="brands-more-link" onclick="showToast('Xem thêm thương hiệu')">Xem thêm</button>
+          </div>
+
+          <!-- Horizontal Carousel: 8 Brand Cards (Viettel Store, Con Cưng, Hoàng Hà, Minh Tuấn dẫn đầu khớp ảnh) -->
+          <div class="brands-row">
+            <div class="brand-item" onclick="showToast('Viettel Store')">
+              <img src="assets/brand_viettel.png" alt="Viettel Store" class="brand-card-img" />
+            </div>
+            <div class="brand-item" onclick="showToast('Con Cưng')">
+              <img src="assets/brand_concung.png" alt="Con Cung" class="brand-card-img" />
+            </div>
+            <div class="brand-item" onclick="showToast('Hoàng Hà Mobile')">
+              <img src="assets/brand_hoangha.png" alt="Hoang Ha Mobile" class="brand-card-img" />
+            </div>
+            <div class="brand-item" onclick="showToast('Minh Tuấn Mobile')">
+              <img src="assets/brand_minhtuan.png" alt="Minh Tuan Mobile" class="brand-card-img" />
+            </div>
+            <div class="brand-item" onclick="showToast('Thế Giới Di Động')">
+              <img src="assets/brand_tgdd.png" alt="The Gioi Di Dong" class="brand-card-img" />
+            </div>
+            <div class="brand-item" onclick="showToast('Điện Máy Xanh')">
+              <img src="assets/brand_dmx.png" alt="Dien May Xanh" class="brand-card-img" />
+            </div>
+            <div class="brand-item" onclick="showToast('CellphoneS')">
+              <img src="assets/brand_cellphones.png" alt="CellphoneS" class="brand-card-img" />
+            </div>
+            <div class="brand-item" onclick="showToast('FPTShop')">
+              <img src="assets/brand_fpt.png" alt="FPTShop" class="brand-card-img" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: "Bạn mới sử dụng Kredivo? Khám phá ngay!" (Khớp 100% ảnh khi cuộn xuống) -->
+        <section class="tutorial-guide-section" id="tutorialGuideSection">
+          <h2 class="tutorial-guide-title">Bạn mới sử dụng Kredivo? Khám phá ngay!</h2>
+          
+          <!-- 3 thẻ bài hướng dẫn gốc 100% -->
+          <div class="tutorial-cards-row">
+            <div class="tutorial-card-item" onclick="showToast('Hạn Mức Đề Xuất Là Gì?')">
+              <img src="assets/tut_card_1.png" alt="Hạn Mức Đề Xuất Là Gì?" class="tut-card-img" />
+            </div>
+            <div class="tutorial-card-item" onclick="showToast('Cách Mua Sắm Online Với Kredivo')">
+              <img src="assets/tut_card_2.png" alt="Cách Mua Sắm Online Với Kredivo" class="tut-card-img" />
+            </div>
+            <div class="tutorial-card-item" onclick="showToast('Cách Thanh Toán Cho Kredivo')">
+              <img src="assets/tut_card_3.png" alt="Cách Thanh Toán Cho Kredivo" class="tut-card-img" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section Footer: Đối tác ngân hàng TPBank (Ảnh sắc nét từ media_1790616832506.png) -->
+        <section class="tpbank-footer-section">
+          <div class="tpbank-text">Licensed financial institutions on Kredivo App</div>
+          <div class="tpbank-logo-wrap">
+            <svg class="tpbank-svg" width="130" height="24" viewBox="0 0 160 30" fill="none">
+              <!-- TPBank Orange Triangle -->
+              <polygon points="12,2 25,24 2,24" fill="#F97316"/>
+              <polygon points="12,8 20,22 6,22" fill="#0C0C0C"/>
+              <polygon points="12,12 17,21 8,21" fill="#F97316"/>
+              <!-- TPBank Purple Text -->
+              <text x="32" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="900" fill="#7C3AED" letter-spacing="-0.5">TP<tspan fill="#6D28D9" font-weight="700">Bank</tspan></text>
+            </svg>
+          </div>
+        </section>
+
+        <div class="nav-bottom-spacer"></div>
+      </div>
+
+      <!-- Nút nổi cuộn xuống: ↓ Xem thêm (Xuất hiện khi giao diện vẫn còn ở dưới) -->
+      <button class="floating-see-more-btn" id="floatingSeeMoreBtn" onclick="scrollDownMore()" aria-label="Xem thêm">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="4" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+        <span>Xem thêm</span>
+      </button>
+    </main>
+
+
+    <!-- ============================================== -->
+    <!-- SCREEN 2: MODAL THÔNG TIN HẠN MỨC (HÌNH SỐ 2)  -->
+    <!-- ============================================== -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeLimitModal()"></div>
+
+    <div class="bottom-sheet-panel" id="limitBottomSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+      
+      <!-- Tay nắm kéo / đóng modal -->
+      <div class="sheet-drag-area" onclick="closeLimitModal()">
+        <div class="sheet-handle"></div>
+      </div>
+
+      <div class="sheet-inner">
+        <h3 class="sheet-heading" id="sheetTitle">Thông tin hạn mức*</h3>
+
+        <!-- Grid 6 thẻ hạn mức trả góp (2 cột x 3 hàng) khớp 100% Hình 2 -->
+        <div class="limit-tiles-grid">
+          
+          <!-- Thẻ 12 Tháng -->
+          <div class="limit-tile-card">
+            <div class="tile-badge badge-blue">
+              <span class="badge-number">12</span>
+              <span class="badge-unit">Tháng</span>
+            </div>
+            <div class="tile-content">
+              <span class="tile-sub">Hạn mức còn lại</span>
+              <span class="tile-val">0 đ</span>
+            </div>
+          </div>
+
+          <!-- Thẻ 9 Tháng -->
+          <div class="limit-tile-card">
+            <div class="tile-badge badge-green">
+              <span class="badge-number">9</span>
+              <span class="badge-unit">Tháng</span>
+            </div>
+            <div class="tile-content">
+              <span class="tile-sub">Hạn mức còn lại</span>
+              <span class="tile-val">0 đ</span>
+            </div>
+          </div>
+
+          <!-- Thẻ 6 Tháng -->
+          <div class="limit-tile-card">
+            <div class="tile-badge badge-orange">
+              <span class="badge-number">6</span>
+              <span class="badge-unit">Tháng</span>
+            </div>
+            <div class="tile-content">
+              <span class="tile-sub">Hạn mức còn lại</span>
+              <span class="tile-val">0 đ</span>
+            </div>
+          </div>
+
+          <!-- Thẻ 4 Tháng* -->
+          <div class="limit-tile-card">
+            <div class="tile-badge badge-purple">
+              <span class="badge-number">4</span>
+              <span class="badge-unit">Tháng*</span>
+            </div>
+            <div class="tile-content">
+              <span class="tile-sub">Hạn mức còn lại</span>
+              <span class="tile-val">0 đ</span>
+            </div>
+          </div>
+
+          <!-- Thẻ 3 Tháng -->
+          <div class="limit-tile-card">
+            <div class="tile-badge badge-red">
+              <span class="badge-number">3</span>
+              <span class="badge-unit">Tháng</span>
+            </div>
+            <div class="tile-content">
+              <span class="tile-sub">Hạn mức còn lại</span>
+              <span class="tile-val">0 đ</span>
+            </div>
+          </div>
+
+          <!-- Thẻ 1 Tháng -->
+          <div class="limit-tile-card">
+            <div class="tile-badge badge-cyan">
+              <span class="badge-number">1</span>
+              <span class="badge-unit">Tháng</span>
+            </div>
+            <div class="tile-content">
+              <span class="tile-sub">Hạn mức còn lại</span>
+              <span class="tile-val">0 đ</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Chú thích chân trang -->
+        <div class="sheet-disclaimers">
+          <p class="disclaimer-item">
+            <span class="ast red-ast">*</span>
+            <span>Chỉ áp dụng tại Thế Giới Di Động, Điện Máy Xanh và Topzone.</span>
+          </p>
+          <p class="disclaimer-item">
+            <span class="ast">*</span>
+            <span>Đây chỉ là hạn mức đề xuất cho các khoản vay. 
+              <a href="javascript:void(0)" onclick="showToast('Chính sách hạn mức đề xuất')" class="disclaimer-a">Tìm hiểu thêm</a>
+            </span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- SCREEN 3: VAY CÁ NHÂN (HÌNH SỐ 3)              -->
+    <!-- ============================================== -->
+    <main class="app-screen screen-loan" id="screenLoan">
+      
+      <!-- Header điều hướng -->
+      <header class="loan-top-nav">
+        <button class="loan-back-btn" onclick="switchScreen('home')" aria-label="Quay lại">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <div class="loan-nav-title-group">
+          <img src="assets/loan_header_icon.png" alt="Vay Cá Nhân" class="loan-nav-icon" />
+          <h1 class="loan-nav-text">Vay Cá Nhân</h1>
+        </div>
+      </header>
+
+      <div class="loan-body-content">
+        
+        <!-- Khung thông báo giới hạn khoản vay đầu tiên -->
+        <div class="loan-info-box">
+          <p class="loan-info-text">
+            Mức vay tối đa cho giao dịch Vay Cá Nhân đầu tiên là 80% hạn mức của bạn. Từ giao dịch sau trở đi, bạn có thể yêu cầu vay tối đa hạn mức của mình. 
+            <a href="javascript:void(0)" onclick="showToast('Chính sách vay cá nhân')" class="loan-info-link">Tìm hiểu thêm</a>
+          </p>
+        </div>
+
+        <!-- Minh họa trạng thái rỗng (Hình gốc 100%) -->
+        <div class="loan-empty-view">
+          <div class="loan-illus-wrapper">
+            <img src="assets/loan_illustration.png" alt="Không có khoản vay phù hợp" class="loan-illus-img" />
+          </div>
+          <h2 class="loan-empty-title">Hiện bạn không có khoản vay nào phù hợp</h2>
+          <p class="loan-empty-desc">Vui lòng thử lại sau 30 ngày.</p>
+        </div>
+
+      </div>
+
+      <!-- Nút hành động cam cố định ở chân trang -->
+      <footer class="loan-bottom-bar">
+        <button class="loan-orange-btn" onclick="switchScreen('home')">
+          Quay lại
+        </button>
+      </footer>
+
+    </main>
+
+
+    <!-- ============================================== -->
+    <!-- BOTTOM NAVIGATION BAR (Hình 1 & 2)             -->
+    <!-- ============================================== -->
+    <nav class="app-bottom-nav" id="appBottomNav" aria-label="Điều hướng chính">
+      
+      <!-- Tab 1: Trang Chủ (Active) -->
+      <button class="bottom-tab active" id="tabHome" onclick="switchNavTab(this, 'home')">
+        <div class="tab-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/>
+            <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/>
+            <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/>
+            <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/>
+          </svg>
+        </div>
+        <span class="tab-label">Trang Chủ</span>
+      </button>
+
+      <!-- Tab 2: Lịch Sử Giao Dịch -->
+      <button class="bottom-tab" id="tabHistory" onclick="switchNavTab(this, 'history')">
+        <div class="tab-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+            <line x1="8" y1="8" x2="16" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="8" y1="16" x2="13" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="tab-label">Lịch Sử Giao Dịch</span>
+      </button>
+
+      <!-- Tab 3: Thương Hiệu -->
+      <button class="bottom-tab" id="tabBrands" onclick="switchNavTab(this, 'brands')">
+        <div class="tab-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M3 9l2-5h14l2 5v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" stroke="currentColor" stroke-width="2"/>
+            <path d="M3 9h18" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 22V13h6v9" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <span class="tab-label">Thương Hiệu</span>
+      </button>
+
+      <!-- Tab 4: Tài Khoản -->
+      <button class="bottom-tab" id="tabAccount" onclick="switchNavTab(this, 'account')">
+        <div class="tab-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="7" r="4"/>
+            <path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/>
+          </svg>
+        </div>
+        <span class="tab-label">Tài Khoản</span>
+      </button>
+
+    </nav>
+
+    <!-- Thông báo nhanh Toast -->
+    <div class="toast-popup" id="toastPopup">Thông báo</div>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
